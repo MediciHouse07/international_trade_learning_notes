@@ -1,0 +1,43 @@
+---
+title: "Learning Note of International Trade"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+I would use this notebook as my learning note of "International Trade" book. I will try my best to mark the source where I quote information from, no matter it is from a book or something else. And please feel free to let me know if there is anything that you think is inproper, I will review it and adjust it if it is neccessary.
+
+## 1. Gravity model
+
+Let me type in formula first
+
+
+
+$T_{ij} = A \times Y_{i} \times Y_{j} / D_{ij}$  <br>
+In which $A$ is a constant term, $Y_{i}$ and $Y_{j}$ is GDP of the corresponding country, $T_{ij}$ is trade volume between countries, and $D_{ij}$ represents distant between countries.<br>
+
+Then let's type/select parameters to verify if the formula holds
+*GDP data is from 2017, unit is million in USD*
+
+```{r eruptions, echo=FALSE}
+inputPanel(
+  selectInput("country_1", label = "Country i",
+              choices = c('USA'), selected = 'USA'),
+  selectInput("country_2", label = "Country j",
+              choices = c('UK'), selected = 'UK'),
+  numericInput("A", label = "Constant A",
+              value=0.001)
+)
+
+renderText({
+  paste('Given the formula, the simulated trade value between ',input$country_1,'and',input$country_2,' is ',round(input$A*19485394*2637866/6000,2),' Million USD  ')
+})
+
+```
+
+To be developed
+
+
